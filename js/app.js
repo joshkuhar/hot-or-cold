@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 	
-
+  var count = 0;
 
 	/*--- Display information modal box ---*/
   	$(".what").click(function(){
@@ -19,6 +19,9 @@ $(document).ready(function(){
       var guess = $("#userGuess").val();
       $("#guessList").append("<li> " + guess + " </li>");
       $("#userGuess").val('');
+      count++;
+      $("#count").empty().append("<span> " +count+ " </span>");
+      $("#feedback").empty().append("Good guess");
     });    
 
 
