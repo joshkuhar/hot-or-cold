@@ -24,7 +24,20 @@ $(document).ready(function(){
       $("#feedback").empty().append("Good guess");
     });    
 
+    $("#userGuess").keyup(function(event){
+      if(event.keyCode === 13) {
+         event.preventDefault();
+      //event.preventDefault();
+      /*var guess = $("#userGuess").val();
+      $("#guessList").append("<li> " + guess + " </li>");
+      $("#userGuess").val('');
+      count++;
+      $("#count").empty().append("<span> " +count+ " </span>");
+      $("#feedback").empty().append("Good guess");*/
+      }
+    });
+
 
 });
-
+  
 
