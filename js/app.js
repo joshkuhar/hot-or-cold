@@ -3,6 +3,7 @@ $(document).ready(function(){
 	
   var count = 0;
   var secretNum = Math.floor((Math.random() * 100) + 1);
+  var previousGuess = 0;
   console.log(secretNum);
 
 	/*--- Display information modal box ---*/
@@ -26,6 +27,7 @@ $(document).ready(function(){
     // Play game
     $("#guessButton").click(function(event) {
       event.preventDefault();
+      console.log(previousGuess);
       var guess = $("#userGuess").val();
       // Validate input from game player
       if (guess % guess !== 0) {
@@ -39,6 +41,7 @@ $(document).ready(function(){
         count++;
         $("#count").empty().append("<span> " +count+ " </span>");
         guessMessage(guess, secretNum);
+        previousGuess = guess;
       }
     });    
 
@@ -56,10 +59,11 @@ $(document).ready(function(){
     // Function to reset all fields
     function resetAllFields() {
         $("#userGuess").val('');
-        var count = 0;
+        count = 0;
         $("#userGuess, #guessList").empty();
         $("#count").empty().append("<span> " +count+ " </span>");
         $("#feedback").empty().append("Make your Guess!");
+        previousGuess = 0;
         console.log("check");
       }
 
@@ -69,14 +73,14 @@ $(document).ready(function(){
       if (guess > (secretNum + 20)) {
         $("#feedback").append("Cold");
       }
-      else if (guess > secretNum && guess < (secretNum + 20)) {
-        $("#feedback").append("Warm");
-      }
       else if (guess < (secretNum - 20)) {
         $("#feedback").append("Cold");
       }
+      else if (guess > secretNum && guess < (secretNum + 20)) {
+        $("#feedback").append("Hot");
+      }
       else if (guess < secretNum && guess > (secretNum - 20)) {
-        $("#feedback").append("Warm");
+        $("#feedback").append("Hot");
       }
       else {
         $("#feedback").append("You Got It");
